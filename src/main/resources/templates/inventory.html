@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Store Inventory</title>
+</head>
+<body>
+<h1>Store Inventory System</h1>
+
+<!-- Search Form mapping to /inventory/search -->
+<form th:action="@{/inventory/search}" method="get">
+    <input type="text" name="name" placeholder="Search product name..." required />
+    <button type="submit">Search</button>
+</form>
+<br/>
+
+<table border="1">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Product Name</th>
+        <th>Price</th>
+    </tr>
+    </thead>
+    <tbody>
+    <!-- Replace this div entirely with our reusable header fragment -->
+    <div th:replace="~{fragments/navbar :: header}"></div>
+
+    <!-- rest of HTML view -->
+
+    <!-- Iterate over the 'products' model attribute -->
+    <tr th:each="item : ${products}">
+        <td th:text="${item.id}">1</td>
+        <td th:text="${item.name}">Placeholder Name</td>
+        <td th:text="${'$' + #numbers.formatDecimal(item.price, 1, 2)}">$0.00</td>
+    </tr>
+    </tbody>
+</table>
+
+<br/>
+<a th:href="@{/inventory}">Clear Search / View All Inventory</a>
+</body>
+</html>
