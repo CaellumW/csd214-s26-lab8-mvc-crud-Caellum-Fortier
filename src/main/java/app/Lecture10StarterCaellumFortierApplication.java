@@ -1,5 +1,6 @@
 package app;
 
+import app.entities.GelPolishEntity;
 import com.github.javafaker.Faker;
 import app.entities.BookEntity;
 import app.repositories.ProductRepository;
@@ -28,27 +29,27 @@ public class Lecture10StarterCaellumFortierApplication implements CommandLineRun
 			Faker faker = new Faker();
 
 			for (int i = 0; i < 5; i++) {
-				BookEntity b = new BookEntity();
-				b.setAuthor(faker.book().author());
-				b.setTitle(faker.book().title());
-				b.setName(b.getTitle()); // Map title to the parent product name
-				b.setPrice(faker.number().randomDouble(2, 10, 50));
-				productRepository.save(b);
+				GelPolishEntity p = new GelPolishEntity();
+				p.setColourShade(faker.color().name());
+				p.setTexture(faker.color().name());
+				p.setBrand(p.getBrand()); // Map title to the parent product name
+				p.setPrice(faker.number().randomDouble(2, 10, 50));
+				productRepository.save(p);
 			}
 
-			BookEntity specificBook1 = new BookEntity();
-			specificBook1.setAuthor("Julius Caesar");
-			specificBook1.setTitle("The Gallic Wars");
-			specificBook1.setName("The Gallic Wars");
-			specificBook1.setPrice(19.99);
-			productRepository.save(specificBook1);
+			GelPolishEntity specificPolish1 = new GelPolishEntity();
+			specificPolish1.setColourShade("Red");
+			specificPolish1.setBrand("e.l.f");
+			specificPolish1.setTexture("Matte");
+			specificPolish1.setPrice(24.99);
+			productRepository.save(specificPolish1);
 
-			BookEntity specificBook2 = new BookEntity();
-			specificBook2.setAuthor("Julius Caesar");
-			specificBook2.setTitle("The Civil War");
-			specificBook2.setName("The Civil War");
-			specificBook2.setPrice(24.99);
-			productRepository.save(specificBook2);
+			GelPolishEntity specificPolish2 = new GelPolishEntity();
+			specificPolish2.setColourShade("Forest Green");
+			specificPolish2.setBrand("nyx");
+			specificPolish2.setTexture("Shiny");
+			specificPolish2.setPrice(24.99);
+			productRepository.save(specificPolish2);
 
 			System.out.println("Database seeded successfully!");
 		}
