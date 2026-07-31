@@ -1,0 +1,4 @@
+1. It's dangerous to do that with get because you'll open yourself up to certain cyber attacks. It's always best to use post, that way if it is something malicious being submitted, the database discards it and nothing gets returned to the attacker.
+2. Object and Field work together to ensure that data is matched up properly. It's not perfect, so if you put something in the wrong order it won't magically know to fix it, but it helps with streamlining the information
+3. The hidden input tool is important because the ID is how you uniquely identify objects. If you allowed users to edit this manually then you would have edit/update/deletion errors, as well as just general anomalies in your database.
+4. Layouts and fragments improve the maintainability by keeping everything separated and organized. It helps ensure that if there is something that needs to be updated, it can be update in as few places as possible. This makes it easy to adjust things in the future.
