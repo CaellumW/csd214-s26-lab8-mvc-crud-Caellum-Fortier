@@ -6,7 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.ArrayList;
 import java.util.List;
 
-public interface NailKitEntityRepository extends JpaRepository<NailKitEntity, Long> {
+public interface NailKitRepository extends JpaRepository<NailKitEntity, Long> {
     List<NailKitEntity> findNailKitEntitiesByBrandIgnoreCase(String brand);
 
     List<NailKitEntity> findNailKitEntitiesByKitTypeIgnoreCase(String kitType);
