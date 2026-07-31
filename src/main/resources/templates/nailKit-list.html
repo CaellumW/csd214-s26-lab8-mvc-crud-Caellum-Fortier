@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Nail Kit Management</title>
+</head>
+<body>
+
+<!-- Replace this div entirely with our reusable header fragment -->
+<div th:replace="~{fragments/navbar :: header}"></div>
+
+<h1>Nail Kit Management (CRUD)</h1>
+
+<a th:href="@{/kits/new}">
+    <button>+ Add New Nail Kit</button>
+</a>
+<br/><br/>
+
+<table border="1">
+    <thead>
+    <tr>
+        <th>Kit Type</th>
+        <th>Kit Level</th>
+        <th>Items</th>
+        <th>ID</th>
+        <th>Price</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+
+
+    <!-- rest of HTML view -->
+
+    <tr th:each="kit : ${kits}">
+        <td th:text="${kit.kitType}">Type</td>
+        <td th:text="${kit.kitLevel}">Level</td>
+        <td th:text="${kit.items}">Items</td>
+        <td th:text="${kit.id}">ID</td>
+        <td th:text="${'$' + #numbers.formatDecimal(kit.price, 1, 2)}">$0.00</td>
+        <td>
+            <a th:href="@{/kits/edit/{id}(id=${kit.id})}">Edit</a> |
+            <a th:href="@{/kits/delete/{id}(id=${kit.id})}"
+               onclick="return confirm('Confirm deletion of this record?');">Delete</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+<br/>
+<a th:href="@{/inventory}">Back to Main Inventory</a>
+</body>
+</html>

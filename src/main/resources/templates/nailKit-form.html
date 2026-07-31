@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Nail Kit Form</title>
+</head>
+<body>
+<!-- Replace this div entirely with our reusable header fragment -->
+<div th:replace="~{fragments/navbar :: header}"></div>
+
+<!-- rest of HTML view -->
+
+<h1 th:text="${kit.id == null} ? 'Add New Nail Kit' : 'Edit Nail Kit'">Add/Edit Nail Kit</h1>
+
+<form th:action="@{/kits/save}" th:object="${kit}" method="post">
+
+    <!-- HIDDEN KEY: Critical for Updates to prevent duplicating records -->
+    <input type="hidden" th:field="*{id}" />
+
+    <label>Kit Type:</label><br/>
+    <input type="text" th:field="*{kitType}" required />
+    <br/><br/>
+
+    <label>Kit Level:</label><br/>
+    <input type="text" th:field="*{kitLevel}" required />
+    <br/><br/>
+
+    <label>Items:</label><br/>
+    <input type="text" th:field="*{items}" required />
+    <br/><br/>
+
+    <button type="submit">Save Nail Kit</button>
+</form>
+
+<br/>
+<a th:href="@{/kits}">Cancel and go back</a>
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Accessory Management</title>
+</head>
+<body>
+
+<!-- Replace this div entirely with our reusable header fragment -->
+<div th:replace="~{fragments/navbar :: header}"></div>
+
+<h1>Accessory Management (CRUD)</h1>
+
+<a th:href="@{/accessories/new}">
+    <button>+ Add New Accessory</button>
+</a>
+<br/><br/>
+
+<table border="1">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Accessory Type</th>
+        <th>Price</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+
+
+    <!-- rest of HTML view -->
+
+    <tr th:each="accessory : ${accessories}">
+        <td th:text="${accessory.id}">1</td>
+        <td th:text="${accessory.type}">Type</td>
+        <td th:text="${'$' + #numbers.formatDecimal(accessory.price, 1, 2)}">$0.00</td>
+        <td>
+            <a th:href="@{/accessories/edit/{id}(id=${accessory.id})}">Edit</a> |
+            <a th:href="@{/accessories/delete/{id}(id=${accessory.id})}"
+               onclick="return confirm('Confirm deletion of this record?');">Delete</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+<br/>
+<a th:href="@{/inventory}">Back to Main Inventory</a>
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Polish Management</title>
+</head>
+<body>
+
+<!-- Replace this div entirely with our reusable header fragment -->
+<div th:replace="~{fragments/navbar :: header}"></div>
+
+<h1>Polish Management (CRUD)</h1>
+
+<a th:href="@{/polishes/new}">
+    <button>+ Add New Polish</button>
+</a>
+<br/><br/>
+
+<table border="1">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Colour</th>
+        <th>Finish</th>
+        <th>Price</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+
+
+    <!-- rest of HTML view -->
+
+    <tr th:each="polish : ${polishes}">
+        <td th:text="${polish.id}">1</td>
+        <td th:text="${polish.colourShade}">Colours</td>
+        <td th:text="${polish.texture}">Texture</td>
+        <td th:text="${'$' + #numbers.formatDecimal(polish.price, 1, 2)}">$0.00</td>
+        <td>
+            <a th:href="@{/polishes/edit/{id}(id=${polish.id})}">Edit</a> |
+            <a th:href="@{/polishes/delete/{id}(id=${polish.id})}"
+               onclick="return confirm('Confirm deletion of this record?');">Delete</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+<br/>
+<a th:href="@{/inventory}">Back to Main Inventory</a>
+</body>
+</html>
